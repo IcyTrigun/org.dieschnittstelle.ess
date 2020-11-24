@@ -7,20 +7,23 @@ import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
 import org.dieschnittstelle.ess.entities.erp.IndividualisedProductItem;
 
 import org.dieschnittstelle.ess.jrs.IProductCRUDService;
+import org.jboss.resteasy.client.jaxrs.ResteasyClient;
+import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
 public class ProductCRUDRESTClient {
 
 	private IProductCRUDService serviceProxy;
-	
+
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(ProductCRUDRESTClient.class);
 
 	public ProductCRUDRESTClient() throws Exception {
 
 
-		/*
-		 * create a client for the web service using ResteasyClientBuilder and ResteasyWebTarget
-		 */
-		serviceProxy = null;
+
+		ResteasyClient rcb = new ResteasyClientBuilder().build();
+		ResteasyWebTarget target = rcb.target("http://localhost:8888/org.dieschnittstelle.ess.jrs/api");
+		serviceProxy = target.proxy(IProductCRUDService.class);
 	}
 
 	public AbstractProduct createProduct(IndividualisedProductItem prod) {

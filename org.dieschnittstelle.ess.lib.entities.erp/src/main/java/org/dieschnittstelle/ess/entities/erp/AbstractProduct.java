@@ -6,23 +6,27 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.entities.GenericCRUDEntity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /*
  * TODO JRS3: entfernen Sie die Auskommentierung der Annotation
  */
-//@JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
+@Entity
+@JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 public abstract class AbstractProduct implements Serializable, GenericCRUDEntity {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(AbstractProduct.class);
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 6940403029597060153L;
 
 	private long id;
 
 	private String name;
-	
+
 	private int price;
 
 	public AbstractProduct() {
@@ -32,7 +36,8 @@ public abstract class AbstractProduct implements Serializable, GenericCRUDEntity
 	public AbstractProduct(String name) {
 		this.name = name;
 	}
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //"eindeutige ID's über alle Tabellen"
 	public long getId() {
 		return id;
 	}
@@ -48,7 +53,7 @@ public abstract class AbstractProduct implements Serializable, GenericCRUDEntity
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public int getPrice() {
 		return price;
 	}
