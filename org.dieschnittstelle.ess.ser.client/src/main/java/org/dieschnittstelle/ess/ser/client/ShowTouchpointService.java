@@ -1,14 +1,5 @@
 package org.dieschnittstelle.ess.ser.client;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpDelete;
@@ -23,7 +14,16 @@ import org.dieschnittstelle.ess.entities.crm.Address;
 import org.dieschnittstelle.ess.entities.crm.StationaryTouchpoint;
 import org.dieschnittstelle.ess.utils.Http;
 
-import static org.dieschnittstelle.ess.utils.Utils.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.Future;
+
+import static org.dieschnittstelle.ess.utils.Utils.show;
+import static org.dieschnittstelle.ess.utils.Utils.step;
 
 public class ShowTouchpointService {
 
@@ -265,8 +265,14 @@ public class ShowTouchpointService {
 				// return the object that you have read from the response
 				//show("recived tp" + recievedTp "recievedt==tp" + tp==recievedTp);
 				EntityUtils.consume(response.getEntity());
+				return recievedTp;
+			} else{
+				String err = "could not successfully execute request. Got status code: "
+						+ response.getStatusLine().getStatusCode();
+				logger.error(err);
+				throw new RuntimeException(err);
 			}
-			return null;
+
 		} catch (Exception e) {
 			logger.error("got exception: " + e, e);
 			throw new RuntimeException(e);
