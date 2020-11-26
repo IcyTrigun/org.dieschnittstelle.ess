@@ -1,31 +1,16 @@
 package org.dieschnittstelle.ess.entities.crm;
 
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashSet;
-
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.entities.GenericCRUDEntity;
+
+import javax.persistence.*;
+import javax.xml.bind.annotation.*;
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.HashSet;
 
 /**
  * this is an abstraction over different touchpoints (with pos being the most
@@ -79,7 +64,7 @@ public abstract class AbstractTouchpoint implements Serializable, GenericCRUDEnt
 	/*
 	 * TODO JWS2: kommentieren Sie @XmlTransient aus
 	 */
-	@XmlTransient
+	//@XmlTransient
 	@ManyToMany
 	private Collection<Customer> customers = new HashSet<Customer>();
 	

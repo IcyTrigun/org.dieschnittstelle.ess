@@ -1,14 +1,15 @@
 package org.dieschnittstelle.ess.jws.client;
 
 import org.apache.logging.log4j.Logger;
+import org.dieschnittstelle.ess.entities.crm.ws.AbstractTouchpoint;
+import org.dieschnittstelle.ess.entities.crm.ws.StationaryTouchpoint;
+import org.dieschnittstelle.ess.jws.*;
 
+import javax.xml.ws.Response;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
-// TODO: entfernen Sie die Kommentare für die folgenden Imports und die Implementierung der main-Methode
-// import org.dieschnittstelle.ess.entities.crm.ws.AbstractTouchpoint;
-// import org.dieschnittstelle.ess.entities.crm.ws.StationaryTouchpoint;
+import java.util.List;
 
 public class ShowTouchpointSOAPService {
 
@@ -19,7 +20,7 @@ public class ShowTouchpointSOAPService {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-/*
+
 		// we may access the service synchronously or asynchronously
 			boolean async = false;
 
@@ -105,8 +106,9 @@ public class ShowTouchpointSOAPService {
 			}
 
 		}
-*/
-	}
+
+
+
 
 	/*
 	 * this is duplicated here as we do not want to introduce any dependencies to ESS-specific artifacts
