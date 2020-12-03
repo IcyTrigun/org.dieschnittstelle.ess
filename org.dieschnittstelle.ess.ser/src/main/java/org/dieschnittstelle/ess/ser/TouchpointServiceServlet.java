@@ -94,13 +94,15 @@ public class TouchpointServiceServlet extends HttpServlet {
 	protected void doDelete(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
 
 		try {
+			//get id an delete url point
 			String uri =  req.getPathInfo();
 			String idStr = uri.replaceAll("[^0-9]", "");
 			long id = Long.parseLong(idStr);
 
-
+			//get Touchpoint
 			TouchpointCRUDExecutor exec = (TouchpointCRUDExecutor) getServletContext()
 					.getAttribute("touchpointCRUD");
+			//delete -> true if sucessful
 			boolean success = exec.deleteTouchpoint(id);
 			if(success){
 				response.setStatus(HttpServletResponse.SC_OK);

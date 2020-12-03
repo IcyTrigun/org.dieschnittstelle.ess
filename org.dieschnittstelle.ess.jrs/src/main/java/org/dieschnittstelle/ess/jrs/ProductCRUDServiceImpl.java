@@ -1,16 +1,11 @@
 package org.dieschnittstelle.ess.jrs;
 
-import java.util.List;
-
-import org.apache.http.HttpRequest;
-import org.apache.http.client.methods.HttpPost;
-import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
-import org.dieschnittstelle.ess.entities.erp.IndividualisedProductItem;
 import org.dieschnittstelle.ess.entities.GenericCRUDExecutor;
 import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.core.Context;
+import java.util.List;
 /*
  * TODO JRS2: implementieren Sie hier die im Interface deklarierten Methoden
  */

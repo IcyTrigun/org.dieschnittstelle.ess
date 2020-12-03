@@ -177,7 +177,7 @@ public class ShowTouchpointService {
 
 	/**
 	 * TODO SER4
-	 *
+	 *Serverside: TouchpointServiceServlet
 	 * @param tp
 	 */
 	public void deleteTouchpoint(AbstractTouchpoint tp) {
@@ -214,6 +214,8 @@ public class ShowTouchpointService {
 	 * Hinweise auf:
 	 * http://stackoverflow.com/questions/10146692/how-do-i-write-to
 	 * -an-outpustream-using-defaulthttpclient
+	 * Serverside: TouchpointServiceServlet
+	 *
 	 *
 	 * @param tp
 	 */

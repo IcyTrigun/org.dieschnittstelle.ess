@@ -1,15 +1,16 @@
 package org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud;
 
-import java.util.List;
+import org.apache.logging.log4j.Logger;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.ShoppingException;
+import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.ShoppingException;
-import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
-import org.apache.logging.log4j.Logger;
+import java.util.List;
 
 @Stateless
 public class TouchpointCRUDStateless implements TouchpointCRUDRemote,
@@ -25,13 +26,13 @@ public class TouchpointCRUDStateless implements TouchpointCRUDRemote,
 	 * TODO ADD1: run CreateTouchpointsAccessingCRUD in the client project with the @TransactionAttribute commented in - what happens?
 	 */
 	@Override
-	//@TransactionAttribute(TransactionAttributeType.MANDATORY)
+	@TransactionAttribute(TransactionAttributeType.MANDATORY)
 	public AbstractTouchpoint createTouchpoint(AbstractTouchpoint touchpoint) throws ShoppingException {
 
 		/*
 		 * TODO ADD1: swap true/false
 		 */		
-		if (/*true*/false) {
+		if (/*false*/true) {
 			throw new RuntimeException(new ShoppingException(
 					ShoppingException.ShoppingSessionExceptionReason.UNKNOWN));
 		} else {
