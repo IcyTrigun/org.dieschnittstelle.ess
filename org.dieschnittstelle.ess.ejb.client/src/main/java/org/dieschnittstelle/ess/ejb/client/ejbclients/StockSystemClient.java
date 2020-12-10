@@ -1,11 +1,11 @@
 package org.dieschnittstelle.ess.ejb.client.ejbclients;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.dieschnittstelle.ess.ejb.ejbmodule.erp.StockSystemRESTService;
 import org.dieschnittstelle.ess.ejb.ejbmodule.erp.StockSystemRemote;
 import org.dieschnittstelle.ess.entities.erp.IndividualisedProductItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StockSystemClient implements StockSystemRemote {
 
@@ -18,9 +18,9 @@ public class StockSystemClient implements StockSystemRemote {
 
 		// TODO: if the REST API shall be accessed, only the service interface needs to be specified when obtaining the proxy
 		//  (starting from S20, this is the default behaviour - note that the base url of the web api is specified in ess-ejb-client.properties)
-//		if (EJBProxyFactory.getInstance().usesWebAPIAsDefault()) {
-//			this.serviceProxy = EJBProxyFactory.getInstance().getProxy(null,null,true);
-//		}
+		if (EJBProxyFactory.getInstance().usesWebAPIAsDefault()) {
+			this.serviceProxy = EJBProxyFactory.getInstance().getProxy(StockSystemRESTService.class,null,true);
+		}
 //		// TODO: if EJBs are used, the ejb interface and uri need to be specified
 //		else {
 //			this.ejbProxy = EJBProxyFactory.getInstance().getProxy(null, null, false);
@@ -35,7 +35,7 @@ public class StockSystemClient implements StockSystemRemote {
 //			this.ejbProxy.addToStock(product, pointOfSaleId, units);
 //		}
 //		else {
-//			this.serviceProxy.addToStock(product.getId(),pointOfSaleId,units);
+			this.serviceProxy.addToStock(product.getId(),pointOfSaleId,units);
 //		}
 	}
 
@@ -46,7 +46,7 @@ public class StockSystemClient implements StockSystemRemote {
 //			this.ejbProxy.removeFromStock(product, pointOfSaleId, units);
 //		}
 //		else {
-//			this.serviceProxy.removeFromStock(product.getId(),pointOfSaleId,units);
+			this.serviceProxy.removeFromStock(product.getId(),pointOfSaleId,units);
 //		}
 	}
 

@@ -30,6 +30,8 @@ public abstract class AbstractProduct implements Serializable, GenericCRUDEntity
 
 	private static final long serialVersionUID = 6940403029597060153L;
 
+	@Id
+	@GeneratedValue
 	private long id;
 
 	private String name;
