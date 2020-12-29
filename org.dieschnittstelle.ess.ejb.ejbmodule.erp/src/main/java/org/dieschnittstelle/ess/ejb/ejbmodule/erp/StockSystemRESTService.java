@@ -25,39 +25,48 @@ public interface StockSystemRESTService {
 	 */
 	@POST
 	@Path("/{prodID}/{posID}/{units}")
-    void addToStock(@PathParam("prodID") long productId, @PathParam("posID")long pointOfSaleId, @PathParam("units")int units);
+    void addToStock(@QueryParam("prodID") long productId, @QueryParam("posID")long pointOfSaleId, @QueryParam("units")int units);
 
 	/**
 	 * removes some units of a product from the stock of a point of sale
 	 */
 	@DELETE
-    void removeFromStock( long productId, long pointOfSaleId, int units);
+	@Path("/{productId}/{pointOfSaleId}/{units}")
+	void removeFromStock(@PathParam("productId")long productId, @PathParam("pointOfSaleId") long pointOfSaleId, @PathParam("units") int units);
 
 	/**
 	 * returns all products on stock of some pointOfSale
 	 */
 	@GET
-    List<IndividualisedProductItem> getProductsOnStock(long pointOfSaleId);
+	@Path("/products")
+	List<IndividualisedProductItem> getProductsOnStock(@QueryParam("pointOfSaleId") long pointOfSaleId);
 
 	/**
 	 * returns all products on stock
 	 */
 	@GET
-    List<IndividualisedProductItem> getAllProductsOnStock();
+	@Path("/products")
+   List<IndividualisedProductItem> getAllProductsOnStock();
 
 	/**
 	 * returns the units on stock for a product at some point of sale
 	 */
-    int getUnitsOnStock(long productId, long pointOfSaleId);
+	@GET
+	int getUnitsOnStock(@QueryParam("productId") long productId, @QueryParam("pointOfSaleId") long pointOfSaleId);
 
 	/**
 	 * returns the total number of units on stock for some product
 	 */
-    int getTotalUnitsOnStock(long productId);
+	@GET
+    int getTotalUnitsOnStock(@QueryParam("productId") long productId);
 
 	/**
 	 * returns the points of sale where some product is available
 	 */
-    List<Long> getPointsOfSale(long productId);
+
+	//GET /stocksystem/point-of-sale?product=1
+	@GET
+	@Path("/points-of-sale")
+    List<Long> getPointsOfSale(@QueryParam("product") long productId);
 
 }

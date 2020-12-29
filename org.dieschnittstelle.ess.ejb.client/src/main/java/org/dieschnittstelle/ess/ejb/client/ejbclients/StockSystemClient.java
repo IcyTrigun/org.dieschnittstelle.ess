@@ -21,10 +21,10 @@ public class StockSystemClient implements StockSystemRemote {
 		if (EJBProxyFactory.getInstance().usesWebAPIAsDefault()) {
 			this.serviceProxy = EJBProxyFactory.getInstance().getProxy(StockSystemRESTService.class,null,true);
 		}
-//		// TODO: if EJBs are used, the ejb interface and uri need to be specified
-//		else {
-//			this.ejbProxy = EJBProxyFactory.getInstance().getProxy(null, null, false);
-//		}
+		// TODO: if EJBs are used, the ejb interface and uri need to be specified
+		else {
+			this.ejbProxy = EJBProxyFactory.getInstance().getProxy(StockSystemRemote.class, null, false);
+		}
 	}
 
 	// TODO: uncomment the commented sections from all the following methods and remove the default return statements
@@ -42,12 +42,12 @@ public class StockSystemClient implements StockSystemRemote {
 	@Override
 	public void removeFromStock(IndividualisedProductItem product, long pointOfSaleId,
 			int units) {
-//		if (ejbProxy != null) {
-//			this.ejbProxy.removeFromStock(product, pointOfSaleId, units);
-//		}
-//		else {
+		if (ejbProxy != null) {
+			this.ejbProxy.removeFromStock(product, pointOfSaleId, units);
+		}
+		else {
 			this.serviceProxy.removeFromStock(product.getId(),pointOfSaleId,units);
-//		}
+		}
 	}
 
 	@Override
@@ -63,46 +63,42 @@ public class StockSystemClient implements StockSystemRemote {
 
 	@Override
 	public List<IndividualisedProductItem> getAllProductsOnStock() {
-//		if (ejbProxy != null) {
-//			return this.ejbProxy.getAllProductsOnStock();
-//		}
-//		else {
-//			return this.serviceProxy.getAllProductsOnStock();
-//		}
-		return new ArrayList<>();
+		if (ejbProxy != null) {
+			return this.ejbProxy.getAllProductsOnStock();
+		}
+		else {
+			return this.serviceProxy.getAllProductsOnStock();
+		}
 	}
 
 	@Override
 	public int getUnitsOnStock(IndividualisedProductItem product, long pointOfSaleId) {
-//		if (ejbProxy != null) {
-//			return this.ejbProxy.getUnitsOnStock(product,pointOfSaleId);
-//		}
-//		else {
-//			return this.serviceProxy.getUnitsOnStock(product.getId(),pointOfSaleId);
-//		}
-		return 0;
+		if (ejbProxy != null) {
+			return this.ejbProxy.getUnitsOnStock(product,pointOfSaleId);
+		}
+		else {
+			return this.serviceProxy.getUnitsOnStock(product.getId(),pointOfSaleId);
+		}
 	}
 
 	@Override
 	public int getTotalUnitsOnStock(IndividualisedProductItem product) {
-//		if (ejbProxy != null) {
-//			return this.ejbProxy.getTotalUnitsOnStock(product);
-//		}
-//		else {
-//			return this.serviceProxy.getTotalUnitsOnStock(product.getId());
-//		}
-		return 0;
+		if (ejbProxy != null) {
+			return this.ejbProxy.getTotalUnitsOnStock(product);
+		}
+		else {
+			return this.serviceProxy.getTotalUnitsOnStock(product.getId());
+		}
 	}
 
 	@Override
 	public List<Long> getPointsOfSale(IndividualisedProductItem product) {
-//		if (ejbProxy != null) {
-//			return this.ejbProxy.getPointsOfSale(product);
-//		}
-//		else {
-//			return this.serviceProxy.getPointsOfSale(product.getId());
-//		}
-		return new ArrayList<>();
+		if (ejbProxy != null) {
+			return this.ejbProxy.getPointsOfSale(product);
+		}
+		else {
+			return this.serviceProxy.getPointsOfSale(product.getId());
+		}
 	}
 
 

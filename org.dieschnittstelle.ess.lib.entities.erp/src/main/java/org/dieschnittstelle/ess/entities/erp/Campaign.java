@@ -1,16 +1,15 @@
 package org.dieschnittstelle.ess.entities.erp;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.logging.log4j.Logger;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.logging.log4j.Logger;
-
-import javax.persistence.*;
-
-
+@Entity
 public class Campaign extends AbstractProduct implements Serializable {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(Campaign.class);

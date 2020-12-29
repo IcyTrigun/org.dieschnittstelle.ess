@@ -6,7 +6,9 @@ import org.dieschnittstelle.ess.entities.erp.PointOfSale;
 import org.dieschnittstelle.ess.entities.erp.StockItem;
 
 import javax.ejb.EJB;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class StockSystemSingleton implements StockSystemLocal {
 
@@ -34,31 +36,65 @@ public class StockSystemSingleton implements StockSystemLocal {
 
     @Override
     public List<IndividualisedProductItem> getProductsOnStock(long pointOfSaleId) {
-        return null;
+        List <IndividualisedProductItem> products = new ArrayList<>();
+        PointOfSale pos = posCrud.readPointOfSale(pointOfSaleId);
+        List<StockItem> stockItems = siCrud.readStockItemsForPointOfSale(pos);
+        for (int i = 0; i < stockItems.size(); i++){
+            products.add(stockItems.get(i).getProduct());
+
+        }
+        return products;
     }
 
     @Override
     public List<IndividualisedProductItem> getAllProductsOnStock() {
-        return null;
+        List <IndividualisedProductItem> allProds = new ArrayList<>();
+        List <PointOfSale> allPos = posCrud.readAllPointsOfSale();
+        for(PointOfSale pos : allPos){
+            List <StockItem> stockItems = siCrud.readStockItemsForPointOfSale(pos);
+            System.out.println("Liste: "+ stockItems);
+            for(StockItem item : stockItems){
+                IndividualisedProductItem prod = item.getProduct();
+                if(!allProds.contains(prod)){
+                    allProds.add(prod);
+                }
+            }
+        }
+        return allProds;
     }
 
     @Override
     public int getUnitsOnStock(IndividualisedProductItem product, long pointOfSaleId) {
-        return 0;
+        PointOfSale pos = posCrud.readPointOfSale(pointOfSaleId);
+        StockItem si = siCrud.readStockItem(product, pos);
+        return  si.getUnits();
     }
 
     @Override
     public int getTotalUnitsOnStock(IndividualisedProductItem product) {
-        return 0;
+        int totalUnits = 0;
+        List<PointOfSale> posList = posCrud.readAllPointsOfSale();
+        for(int i = 0; i < posList.size(); i++){
+            PointOfSale pos = posCrud.readPointOfSale(posList.get(i).getId());
+            if(siCrud.readStockItem(product, pos) != null){
+                StockItem si = siCrud.readStockItem(product, pos);
+                totalUnits += si.getUnits();
+            }
+        }
+        return totalUnits;
     }
 
     @Override
     public List<Long> getPointsOfSale(IndividualisedProductItem product) {
-        return null;
+      return  siCrud.readStockItemsForProduct(product)
+                .stream()
+                .map(si -> si.getPos().getId())
+                .distinct()
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<StockItem> getCompleteStock() {
-        return null;
+        throw new UnsupportedOperationException("getCompleteStock() isn`t supported");
     }
 }

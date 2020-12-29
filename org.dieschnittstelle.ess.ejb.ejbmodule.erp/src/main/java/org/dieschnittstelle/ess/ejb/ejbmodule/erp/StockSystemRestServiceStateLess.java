@@ -51,6 +51,7 @@ public class StockSystemRestServiceStateLess implements StockSystemRESTService{
 
     @Override
     public List<Long> getPointsOfSale(long productId) {
-        return null;
+        IndividualisedProductItem product = (IndividualisedProductItem)productCRUD.readProduct(productId);
+        return stockSystem.getPointsOfSale(product);
     }
 }
