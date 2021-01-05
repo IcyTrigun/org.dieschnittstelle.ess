@@ -6,7 +6,6 @@ import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import java.util.List;
 
 @Stateless
@@ -23,8 +22,7 @@ public class ProductCRUDStateless implements ProductCRUDRemote {
 
     @Override
     public List<AbstractProduct> readAllProducts() {
-        Query qu = entityManager.createQuery("SELECT e FROM AbstractProduct e");
-        return qu.getResultList();
+       return entityManager.createQuery("SELECT e FROM AbstractProduct e").getResultList();
     }
 
     @Override

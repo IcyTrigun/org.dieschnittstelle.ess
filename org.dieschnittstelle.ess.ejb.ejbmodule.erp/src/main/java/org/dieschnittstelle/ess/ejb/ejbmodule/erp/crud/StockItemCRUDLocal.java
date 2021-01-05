@@ -1,18 +1,18 @@
 package org.dieschnittstelle.ess.ejb.ejbmodule.erp.crud;
 
-import java.util.List;
-
-import javax.ejb.Local;
-
 import org.dieschnittstelle.ess.entities.erp.IndividualisedProductItem;
 import org.dieschnittstelle.ess.entities.erp.PointOfSale;
 import org.dieschnittstelle.ess.entities.erp.StockItem;
+
+import javax.ejb.Local;
+import java.util.List;
 
 /*
  * TODO EJB+JPA3/4/6:
  * this interface shall be implemented using a stateless EJB with an EntityManager.
  * See the comments below for hints at how to implement the methods
  */
+@Local
 public interface StockItemCRUDLocal {
 
     /*

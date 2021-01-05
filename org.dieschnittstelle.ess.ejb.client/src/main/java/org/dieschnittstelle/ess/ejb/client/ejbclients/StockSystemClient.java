@@ -4,7 +4,6 @@ import org.dieschnittstelle.ess.ejb.ejbmodule.erp.StockSystemRESTService;
 import org.dieschnittstelle.ess.ejb.ejbmodule.erp.StockSystemRemote;
 import org.dieschnittstelle.ess.entities.erp.IndividualisedProductItem;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class StockSystemClient implements StockSystemRemote {
@@ -31,12 +30,12 @@ public class StockSystemClient implements StockSystemRemote {
 
 	@Override
 	public void addToStock(IndividualisedProductItem product, long pointOfSaleId, int units) {
-//		if (ejbProxy != null) {
-//			this.ejbProxy.addToStock(product, pointOfSaleId, units);
-//		}
-//		else {
+		if (ejbProxy != null) {
+			this.ejbProxy.addToStock(product, pointOfSaleId, units);
+		}
+		else {
 			this.serviceProxy.addToStock(product.getId(),pointOfSaleId,units);
-//		}
+		}
 	}
 
 	@Override
@@ -52,13 +51,12 @@ public class StockSystemClient implements StockSystemRemote {
 
 	@Override
 	public List<IndividualisedProductItem> getProductsOnStock(long pointOfSaleId) {
-//		if (ejbProxy != null) {
-//			return this.ejbProxy.getProductsOnStock(pointOfSaleId);
-//		}
-//		else {
-//			return this.serviceProxy.getProductsOnStock(pointOfSaleId);
-//		}
-		return new ArrayList<>();
+		if (ejbProxy != null) {
+			return this.ejbProxy.getProductsOnStock(pointOfSaleId);
+		}
+		else {
+			return this.serviceProxy.getProductsOnStock(pointOfSaleId);
+		}
 	}
 
 	@Override

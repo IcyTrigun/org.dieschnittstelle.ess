@@ -1,16 +1,21 @@
 package org.dieschnittstelle.ess.ejb.ejbmodule.erp.crud;
 
 import org.dieschnittstelle.ess.ejb.ejbmodule.erp.StockSystemLocal;
+import org.dieschnittstelle.ess.ejb.ejbmodule.erp.StockSystemRemote;
 import org.dieschnittstelle.ess.entities.erp.IndividualisedProductItem;
 import org.dieschnittstelle.ess.entities.erp.PointOfSale;
 import org.dieschnittstelle.ess.entities.erp.StockItem;
 
 import javax.ejb.EJB;
+import javax.ejb.Remote;
+import javax.ejb.Singleton;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class StockSystemSingleton implements StockSystemLocal {
+@Singleton
+@Remote(StockSystemRemote.class)
+public class StockSystemSingleton implements StockSystemLocal, StockSystemRemote {
 
     @EJB
     private StockItemCRUDLocal siCrud;
