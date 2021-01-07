@@ -24,15 +24,13 @@ public interface StockSystemRESTService {
 	 * adds some units of a product to the stock of a point of sale
 	 */
 	@POST
-	@Path("/{prodID}/{posID}/{units}")
     void addToStock(@QueryParam("prodID") long productId, @QueryParam("posID")long pointOfSaleId, @QueryParam("units")int units);
 
 	/**
 	 * removes some units of a product from the stock of a point of sale
 	 */
 	@DELETE
-	@Path("/{productId}/{pointOfSaleId}/{units}")
-	void removeFromStock(@PathParam("productId")long productId, @PathParam("pointOfSaleId") long pointOfSaleId, @PathParam("units") int units);
+	void removeFromStock(@QueryParam("productId") long productId, @QueryParam("pointOfSaleId") long pointOfSaleId, @QueryParam("units") int units);
 
 	/**
 	 * returns all products on stock of some pointOfSale
@@ -44,9 +42,9 @@ public interface StockSystemRESTService {
 	/**
 	 * returns all products on stock
 	 */
-	@GET
+	/*@GET Todo if in getproductonstock
 	@Path("/products")
-   List<IndividualisedProductItem> getAllProductsOnStock();
+   List<IndividualisedProductItem> getAllProductsOnStock(); */
 
 	/**
 	 * returns the units on stock for a product at some point of sale
@@ -57,8 +55,8 @@ public interface StockSystemRESTService {
 	/**
 	 * returns the total number of units on stock for some product
 	 */
-	@GET
-    int getTotalUnitsOnStock(@QueryParam("productId") long productId);
+//	@GET  TODO if in getUnitsonstock
+ //   int getTotalUnitsOnStock(@QueryParam("productId") long productId);
 
 	/**
 	 * returns the points of sale where some product is available

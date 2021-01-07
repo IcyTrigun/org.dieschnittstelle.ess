@@ -27,6 +27,7 @@ public class StockSystemSingleton implements StockSystemLocal, StockSystemRemote
         PointOfSale pos = posCrud.readPointOfSale((pointOfSaleId));
        StockItem stockItem = siCrud.readStockItem(product,pos);
         if(stockItem==null){
+            stockItem = new StockItem(product,pos,units);
             siCrud.createStockItem(stockItem);
         }else{
             stockItem.setUnits(stockItem.getUnits()+units);

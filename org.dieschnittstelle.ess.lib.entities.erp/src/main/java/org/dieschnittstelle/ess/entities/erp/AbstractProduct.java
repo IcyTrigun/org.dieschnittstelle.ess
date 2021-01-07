@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.entities.GenericCRUDEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSeeAlso;
@@ -23,6 +20,7 @@ import java.io.Serializable;
 
 @Entity
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
+@SequenceGenerator(name = "abstract_produkt_sequence", sequenceName = "abstract_produkt_id_sequence")
 public abstract class AbstractProduct implements Serializable, GenericCRUDEntity {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(AbstractProduct.class);
@@ -30,8 +28,8 @@ public abstract class AbstractProduct implements Serializable, GenericCRUDEntity
 
 	private static final long serialVersionUID = 6940403029597060153L;
 
-//	@Id
-	//@GeneratedValue
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "abstract_produkt_sequence")
 	private long id;
 
 	private String name;
@@ -45,8 +43,7 @@ public abstract class AbstractProduct implements Serializable, GenericCRUDEntity
 	public AbstractProduct(String name) {
 		this.name = name;
 	}
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //"eindeutige ID's über alle Tabellen"
+
 	public long getId() {
 		return id;
 	}

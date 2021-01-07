@@ -1,18 +1,16 @@
 package org.dieschnittstelle.ess.ejb.client.junit;
 
-import java.util.List;
-
-import static org.dieschnittstelle.ess.ejb.client.Constants.*;
-
 import org.dieschnittstelle.ess.ejb.client.Constants;
 import org.dieschnittstelle.ess.ejb.client.ejbclients.EJBProxyFactory;
 import org.dieschnittstelle.ess.ejb.client.ejbclients.ProductCRUDClient;
 import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
 import org.dieschnittstelle.ess.entities.erp.Campaign;
-import org.dieschnittstelle.ess.entities.erp.ProductBundle;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
+import static org.dieschnittstelle.ess.ejb.client.Constants.*;
 import static org.junit.Assert.*;
 
 public class TestProductCRUD {

@@ -19,7 +19,7 @@ public class ProductBundle implements Serializable {
 	 */
 	private static final long serialVersionUID = 1501911067906145681L;
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	private long id;
 
 	// this has been changed to AbstractProduct due to some jboss/jackson serialisation issue

@@ -43,10 +43,10 @@ public class StockSystemRestServiceStateLess implements StockSystemRESTService{
         }
     }
 
-    @Override
+   /* @Override
     public List<IndividualisedProductItem> getAllProductsOnStock() {
         return stockSystem.getAllProductsOnStock();
-    }
+    } */
 
     @Override
     public int getUnitsOnStock(long productId, long pointOfSaleId) {
@@ -63,10 +63,10 @@ public class StockSystemRestServiceStateLess implements StockSystemRESTService{
         }
     }
 
-    @Override
+    /*@Override
     public int getTotalUnitsOnStock(long productId) {
         return 0;
-    }
+    } */
 
     @Override
     public List<Long> getPointsOfSale(long productId) {

@@ -32,7 +32,7 @@ public class TouchpointCRUDStateless implements TouchpointCRUDRemote,
 		/*
 		 * TODO ADD1: swap true/false
 		 */		
-		if (/*false*/true) {
+		if (false/*true*/) {
 			throw new RuntimeException(new ShoppingException(
 					ShoppingException.ShoppingSessionExceptionReason.UNKNOWN));
 		} else {

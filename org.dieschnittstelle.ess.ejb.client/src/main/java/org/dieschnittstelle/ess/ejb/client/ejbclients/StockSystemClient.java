@@ -65,7 +65,7 @@ public class StockSystemClient implements StockSystemRemote {
 			return this.ejbProxy.getAllProductsOnStock();
 		}
 		else {
-			return this.serviceProxy.getAllProductsOnStock();
+			return this.serviceProxy.getProductsOnStock(0);
 		}
 	}
 
@@ -85,7 +85,7 @@ public class StockSystemClient implements StockSystemRemote {
 			return this.ejbProxy.getTotalUnitsOnStock(product);
 		}
 		else {
-			return this.serviceProxy.getTotalUnitsOnStock(product.getId());
+			return this.serviceProxy.getUnitsOnStock(product.getId(), 0);
 		}
 	}
 
