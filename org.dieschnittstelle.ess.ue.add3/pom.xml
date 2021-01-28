@@ -35,7 +35,7 @@
                             <sourceRoot>${basedir}/target/generated-sources/jaxws</sourceRoot>
                             <wsdlOptions>
                                 <wsdlOption>
-                                    <wsdl>TODO: Specify URL for ADD3</wsdl>
+                                    <wsdl>/stocksystem</wsdl>
                                 </wsdlOption>
                             </wsdlOptions>
                         </configuration>

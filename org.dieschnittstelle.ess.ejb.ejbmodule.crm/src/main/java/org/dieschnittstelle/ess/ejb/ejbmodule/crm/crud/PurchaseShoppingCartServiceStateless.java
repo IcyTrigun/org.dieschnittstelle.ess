@@ -18,6 +18,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Stateless
 public class PurchaseShoppingCartServiceStateless implements PurchaseShoppingCartService {
@@ -58,8 +59,14 @@ public class PurchaseShoppingCartServiceStateless implements PurchaseShoppingCar
      */
     private AbstractTouchpoint touchpoint;
 
+
+
     @Override
     public void purchaseCartAtTouchpointForCustomer(long shoppingCartId, long touchpointId, long customerId) throws ShoppingException {
+        this.customer = customerCRUDLocal.readCustomer(customerId);
+        this.touchpoint = touchpointCRUDLocal.readTouchpoint(touchpointId);
+        this.shoppingCart = shoppingCartServiceLocal.getCartForId(shoppingCartId);
+
         purchase();
     }
 
@@ -108,7 +115,7 @@ public class PurchaseShoppingCartServiceStateless implements PurchaseShoppingCar
         // TODO PAT1: once this functionality has been moved to the server side components, make sure
         //  that the ShoppingCartItem instances will be cloned/copied by constructing new items before
         //  using them for creating the CustomerTransaction object.
-        List<ShoppingCartItem> products = this.shoppingCart.getItems();
+        List<ShoppingCartItem> products = this.shoppingCart.getItems().stream().map(item -> new ShoppingCartItem(item.getErpProductId(),item.getUnits(), item.isCampaign())).collect(Collectors.toList());
         CustomerTransaction transaction = new CustomerTransaction(this.customer, this.touchpoint, products);
         transaction.setCompleted(true);
         customerTracking.createTransaction(transaction);

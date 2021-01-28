@@ -1,11 +1,11 @@
 package org.dieschnittstelle.ess.ejb.client.ejbclients;
 
-import java.util.List;
-
+import org.dieschnittstelle.ess.ejb.client.Constants;
 import org.dieschnittstelle.ess.ejb.ejbmodule.crm.ShoppingCartRESTService;
 import org.dieschnittstelle.ess.ejb.ejbmodule.crm.ShoppingCartRemote;
 import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
-import org.dieschnittstelle.ess.ejb.client.Constants;
+
+import java.util.List;
 
 public class ShoppingCartClient implements ShoppingCartRemote {
 

@@ -45,7 +45,6 @@ public class ShoppingCartRESTServiceImpl implements ShoppingCartRESTService {
     public void addItem(long cartId, ShoppingCartItem product) {
         em.find(ShoppingCartStateful.class,cartId).addItem(product);
 
-
     }
 
     @Override
@@ -58,6 +57,8 @@ public class ShoppingCartRESTServiceImpl implements ShoppingCartRESTService {
         em.remove(em.find(ShoppingCartStateful.class,cartId));
         return true;
     }
+
+
 
     // if a task shall be scheduled every couple of seconds, also hour and minute need to be specied as "any" ('*')
     // because these attributes default to 0
@@ -75,8 +76,5 @@ public class ShoppingCartRESTServiceImpl implements ShoppingCartRESTService {
                 logger.info("ShoppingCart has not yet exceeded idle time. Keep it: " + scart.getId());
             }
         }
-
     }
-
-
 }
