@@ -9,12 +9,16 @@ import org.dieschnittstelle.ess.entities.erp.StockItem;
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Singleton;
+import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Singleton
 @Remote(StockSystemRemote.class)
+@WebService(targetNamespace = "http://dieschnittstelle.org/ess/jws", serviceName = "StockSystemAccessWebService", endpointInterface = "org.dieschnittstelle.ess.ejb.ejbmodule.erp.StockSystemRemote")
+@SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
 public class StockSystemSingleton implements StockSystemLocal, StockSystemRemote {
 
     @EJB

@@ -1,26 +1,15 @@
 package org.dieschnittstelle.ess.wsv.interpreter.json;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.*;
+import org.apache.logging.log4j.Logger;
+
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
 import java.lang.reflect.Type;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.BooleanNode;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.NullNode;
-import com.fasterxml.jackson.databind.node.NumericNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.node.TextNode;
-import org.apache.logging.log4j.Logger;
+import java.util.*;
 
 /**
  * 
@@ -214,10 +203,11 @@ public class JSONObjectMapper {
 				// check whether we have an abstract class that has jsontype
 				// info present
 				if (Modifier.isAbstract(((Class) type).getModifiers())) {
-					// TODO: include a handling for abstract classes considering
-					// the JsonTypeInfo annotation that might be set on type
-					throw new ObjectMappingException(
-							"cannot instantiate abstract class: " + type);
+					if (!((Class) type).isAnnotationPresent(JsonTypeInfo.class)) {
+						throw new ObjectMappingException("cannot instantiate abstract class: " + type);
+					} else if (((Class<?>) type).getAnnotation(JsonTypeInfo.class).property() != null){
+						obj = Class.forName(String.valueOf(json.get(((Class<?>) type).getAnnotation(JsonTypeInfo.class).property())));
+					}
 				} else {
 					obj = ((Class) type).newInstance();
 				}

@@ -9,7 +9,7 @@ import java.util.List;
 @Consumes({ "application/json" })
 @Produces({ "application/json" })
 public interface ITouchpointCRUDService {
-	
+
 	@GET
 	public List<StationaryTouchpoint> readAllTouchpoints();
 
@@ -18,8 +18,8 @@ public interface ITouchpointCRUDService {
 	public StationaryTouchpoint readTouchpoint(@PathParam("touchpointId") long id);
 
 	@POST
-	public StationaryTouchpoint createTouchpoint(StationaryTouchpoint touchpoint); 
-	
+	public StationaryTouchpoint createTouchpoint(StationaryTouchpoint touchpoint);
+
 	@DELETE
 	@Path("/{touchpointId}")
 	public boolean deleteTouchpoint(@PathParam("touchpointId") long id);
