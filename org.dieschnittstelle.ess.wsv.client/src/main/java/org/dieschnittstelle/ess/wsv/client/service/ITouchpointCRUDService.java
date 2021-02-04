@@ -1,5 +1,6 @@
 package org.dieschnittstelle.ess.wsv.client.service;
 
+import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.StationaryTouchpoint;
 
 import javax.ws.rs.*;
@@ -11,21 +12,21 @@ import java.util.List;
 public interface ITouchpointCRUDService {
 
 	@GET
-	public List<StationaryTouchpoint> readAllTouchpoints();
-
+		//List<StationaryTouchpoint> readAllTouchpoints();
+	List<AbstractTouchpoint> readAllTouchpoints();
 	@GET
 	@Path("/{touchpointId}")
-	public StationaryTouchpoint readTouchpoint(@PathParam("touchpointId") long id);
-
+		//StationaryTouchpoint readTouchpoint(@PathParam("touchpointId") long id);
+	AbstractTouchpoint readTouchpoint(@PathParam("touchpointId") long id);
 	@POST
-	public StationaryTouchpoint createTouchpoint(StationaryTouchpoint touchpoint);
-
+		//StationaryTouchpoint createTouchpoint(StationaryTouchpoint touchpoint);
+	AbstractTouchpoint createTouchpoint(StationaryTouchpoint touchpoint);
 	@DELETE
 	@Path("/{touchpointId}")
-	public boolean deleteTouchpoint(@PathParam("touchpointId") long id);
+	boolean deleteTouchpoint(@PathParam("touchpointId") long id);
 
 	@PUT
 	@Path("/{touchpointId}")
-	public StationaryTouchpoint updateTouchpoint(@PathParam("touchpointId") long id,StationaryTouchpoint touchpoint);
-
+		// StationaryTouchpoint updateTouchpoint(@PathParam("touchpointId") long id,StationaryTouchpoint touchpoint);
+	AbstractTouchpoint updateTouchpoint(@PathParam("touchpointId") long id, StationaryTouchpoint touchpoint);
 }

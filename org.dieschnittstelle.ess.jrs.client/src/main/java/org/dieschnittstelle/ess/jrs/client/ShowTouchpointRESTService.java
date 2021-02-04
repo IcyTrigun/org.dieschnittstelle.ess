@@ -1,9 +1,7 @@
 package org.dieschnittstelle.ess.jrs.client;
 
-import java.io.IOException;
-import java.util.List;
-
 import org.apache.logging.log4j.Logger;
+import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.Address;
 import org.dieschnittstelle.ess.entities.crm.StationaryTouchpoint;
 import org.dieschnittstelle.ess.jrs.ITouchpointCRUDService;
@@ -12,7 +10,9 @@ import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
-import static org.dieschnittstelle.ess.utils.Utils.*;
+import java.util.List;
+
+import static org.dieschnittstelle.ess.utils.Utils.show;
 
 public class ShowTouchpointRESTService {
 
@@ -38,14 +38,14 @@ public class ShowTouchpointRESTService {
 		show("serviceProxy: " + serviceProxy + " of class: " + serviceProxy.getClass());
 
 		// 1) read out all touchpoints
-		List<StationaryTouchpoint> touchpoints = serviceProxy.readAllTouchpoints();
+		List<StationaryTouchpoint> touchpoints = serviceProxy.readAllTouchpoints(); //vorher StationaryTouchpoint
 		logger.info("read touchpoints: " + touchpoints);
 
 		// 2) delete the touchpoint after next console input
 		if (touchpoints != null && touchpoints.size() > 0) {
 			Utils.step();
 
-			StationaryTouchpoint tp = touchpoints.get(0);
+			AbstractTouchpoint tp = touchpoints.get(0); //vorher stationaryTouchpoint
 			serviceProxy.deleteTouchpoint(tp.getId());
 			logger.info("deleted touchpoint: " + tp);
 		}
@@ -61,7 +61,7 @@ public class ShowTouchpointRESTService {
 		StationaryTouchpoint tp = new StationaryTouchpoint(-1,
 				"BHT Verkaufsstand", addr);
 
-		tp = serviceProxy.createTouchpoint(tp);
+		tp = (StationaryTouchpoint) serviceProxy.createTouchpoint(tp);
 		logger.info("created touchpoint: " + tp);
 
 		/*

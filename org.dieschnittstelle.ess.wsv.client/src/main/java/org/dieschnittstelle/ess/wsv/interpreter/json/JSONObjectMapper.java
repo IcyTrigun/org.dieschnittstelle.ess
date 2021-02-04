@@ -206,7 +206,10 @@ public class JSONObjectMapper {
 					if (!((Class) type).isAnnotationPresent(JsonTypeInfo.class)) {
 						throw new ObjectMappingException("cannot instantiate abstract class: " + type);
 					} else if (((Class<?>) type).getAnnotation(JsonTypeInfo.class).property() != null){
-						obj = Class.forName(String.valueOf(json.get(((Class<?>) type).getAnnotation(JsonTypeInfo.class).property())));
+						String jsonObject = json.get(((Class<?>) type).getAnnotation(JsonTypeInfo.class).property()).asText();
+						Class klass = Class.forName(jsonObject);
+						obj = klass.newInstance();
+						type = klass;
 					}
 				} else {
 					obj = ((Class) type).newInstance();

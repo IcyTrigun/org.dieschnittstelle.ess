@@ -13,21 +13,21 @@ public interface ITouchpointCRUDService {
 	
 	@GET
 	List<StationaryTouchpoint> readAllTouchpoints();
-	//List<AbstractTouchpoint> readAllTouchpoints();
+
 	@GET
 	@Path("/{touchpointId}")
 	StationaryTouchpoint readTouchpoint(@PathParam("touchpointId") long id);
-//AbstractTouchpoint readTouchpoint(@PathParam("touchpointId") long id);
+
 	@POST
 	StationaryTouchpoint createTouchpoint(StationaryTouchpoint touchpoint);
-	// AbstractTouchpoint createTouchpoint(StationaryTouchpoint touchpoint);
+
 	@DELETE
 	@Path("/{touchpointId}")
 	boolean deleteTouchpoint(@PathParam("touchpointId") long id);
 
 	@PUT
 	@Path("/{touchpointId}")
-	 StationaryTouchpoint updateTouchpoint(@PathParam("touchpointId") long id,StationaryTouchpoint touchpoint);
-	//AbstractTouchpoint updateTouchpoint(@PathParam("touchpointId") long id, StationaryTouchpoint touchpoint);
+	StationaryTouchpoint updateTouchpoint(@PathParam("touchpointId") long id,StationaryTouchpoint touchpoint);
+
 
 }
