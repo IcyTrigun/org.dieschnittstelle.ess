@@ -4,12 +4,10 @@ package org.dieschnittstelle.ess.basics;
 import org.dieschnittstelle.ess.basics.annotations.AnnotatedStockItemBuilder;
 import org.dieschnittstelle.ess.basics.annotations.DisplayAs;
 import org.dieschnittstelle.ess.basics.annotations.StockItemProxyImpl;
-import org.dieschnittstelle.ess.basics.annotations.stockitemtypes.Schokolade;
 
 import java.lang.reflect.Field;
-import java.util.Set;
 
-import static org.dieschnittstelle.ess.utils.Utils.*;
+import static org.dieschnittstelle.ess.utils.Utils.show;
 
 public class ShowAnnotations  {
 
@@ -37,39 +35,51 @@ public class ShowAnnotations  {
 	 * TODO BAS2
 	 */
 	private static void showAttributes(Object consumable) throws IllegalAccessException {
-		/*
-		Lösung für Bas2
+
+		//Lösung für Bas2
 		show("class is: " + consumable.getClass());
+		int j =0;
 		StringBuilder attributeString= new StringBuilder();
+		attributeString.append("{");
 		Class klass = consumable.getClass();
 		attributeString.append(klass.getSimpleName()).append(" ");
 		for (Field field : consumable.getClass().getDeclaredFields()) {
+			j++;
 			attributeString.append(field.getName());
 			attributeString.append(":  ");
 			field.setAccessible(true);
 			attributeString.append(field.get(consumable));
-			attributeString.append("  ");
+			if(j!=consumable.getClass().getDeclaredFields().length){
+				attributeString.append(",  ");
 		}
-		System.out.println(attributeString); */
+		}
+		attributeString.append("}");
+		System.out.println(attributeString);
 
 
 		show("class is: " + consumable.getClass());
-		StringBuilder attributeString= new StringBuilder();
-		Class klass = consumable.getClass();
-		attributeString.append(klass.getSimpleName()).append(" ");
+		StringBuilder attributeBAS3String= new StringBuilder();
+		int i =0;
+		Class klassBas3 = consumable.getClass();
+		attributeBAS3String.append("{");
+		attributeBAS3String.append(klassBas3.getSimpleName()).append(" ");
 		for (Field field : consumable.getClass().getDeclaredFields()) {
+			i++;
 			field.setAccessible(true);
 			if(field.getAnnotation(DisplayAs.class)!=null){
-				attributeString.append(field.getAnnotation(DisplayAs.class).value());
+				attributeBAS3String.append(field.getAnnotation(DisplayAs.class).value());
 			}else{
-				attributeString.append(field.getName());
+				attributeBAS3String.append(field.getName());
 			}
-			attributeString.append(":  ");
+			attributeBAS3String.append(":  ");
 
-			attributeString.append(field.get(consumable));
-			attributeString.append("  ");
+			attributeBAS3String.append(field.get(consumable));
+			if(i!=consumable.getClass().getDeclaredFields().length)
+			attributeBAS3String.append(",  ");
+
 		}
-		System.out.println(attributeString);
+		attributeBAS3String.append("}");
+		System.out.println(attributeBAS3String);
 	}
 	// TODO BAS2: create a string representation of consumable by iterating
 	//  over the object's attributes / fields as provided by its class
