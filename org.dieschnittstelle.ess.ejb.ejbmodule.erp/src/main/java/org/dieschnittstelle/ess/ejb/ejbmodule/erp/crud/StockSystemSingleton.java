@@ -1,3 +1,4 @@
+
 package org.dieschnittstelle.ess.ejb.ejbmodule.erp.crud;
 
 import org.dieschnittstelle.ess.ejb.ejbmodule.erp.StockSystemLocal;
@@ -29,7 +30,7 @@ public class StockSystemSingleton implements StockSystemLocal, StockSystemRemote
     @Override
     public void addToStock(IndividualisedProductItem product, long pointOfSaleId, int units) {
         PointOfSale pos = posCrud.readPointOfSale((pointOfSaleId));
-       StockItem stockItem = siCrud.readStockItem(product,pos);
+        StockItem stockItem = siCrud.readStockItem(product,pos);
         if(stockItem==null){
             stockItem = new StockItem(product,pos,units);
             siCrud.createStockItem(stockItem);
@@ -96,7 +97,7 @@ public class StockSystemSingleton implements StockSystemLocal, StockSystemRemote
 
     @Override
     public List<Long> getPointsOfSale(IndividualisedProductItem product) {
-      return  siCrud.readStockItemsForProduct(product)
+        return  siCrud.readStockItemsForProduct(product)
                 .stream()
                 .map(si -> si.getPos().getId())
                 .distinct()

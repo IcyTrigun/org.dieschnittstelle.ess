@@ -4,7 +4,9 @@ import org.dieschnittstelle.ess.entities.erp.IndividualisedProductItem;
 
 import javax.ejb.Remote;
 import javax.jws.WebService;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -15,7 +17,7 @@ import java.util.List;
  */
 @Remote
 @WebService
-@Path("/stocksystem")
+//@Path("/stocksystem")
 @Consumes({MediaType.APPLICATION_JSON})
 @Produces({MediaType.APPLICATION_JSON})
 public interface StockSystemRemote {
@@ -30,7 +32,7 @@ public interface StockSystemRemote {
 	 * @param pointOfSaleId
 	 * @param units
 	 */
-	@POST
+	//@POST
     void addToStock(IndividualisedProductItem product, long pointOfSaleId, int units);
 
 	/**
@@ -42,8 +44,8 @@ public interface StockSystemRemote {
 	 * @param pointOfSaleId
 	 * @param units
 	 */
-	@DELETE
-	@Path("/{id}")
+	//@DELETE
+	//@Path("/{id}")
     void removeFromStock(IndividualisedProductItem product, @PathParam("id") long pointOfSaleId, int units);
 
 	/**
@@ -56,7 +58,7 @@ public interface StockSystemRemote {
 	 * @param pointOfSaleId
 	 * @return
 	 */
-	@GET
+	//@GET
     List<IndividualisedProductItem> getProductsOnStock(long pointOfSaleId);
 
 	/**
@@ -68,7 +70,7 @@ public interface StockSystemRemote {
 	 *
 	 * @return
 	 */
-	@GET
+	//@GET
     List<IndividualisedProductItem> getAllProductsOnStock();
 
 	/**
@@ -81,7 +83,7 @@ public interface StockSystemRemote {
 	 * @param pointOfSaleId
 	 * @return
 	 */
-	@GET
+	//@GET
     int getUnitsOnStock(IndividualisedProductItem product, long pointOfSaleId);
 
 	/**
@@ -92,7 +94,7 @@ public interface StockSystemRemote {
 	 * @param product
 	 * @return
 	 */
-	@GET
+	//@GET
     int getTotalUnitsOnStock(IndividualisedProductItem product);
 
 	/**
@@ -104,7 +106,7 @@ public interface StockSystemRemote {
 	 * @param product
 	 * @return
 	 */
-	@GET
+	//@GET
     List<Long> getPointsOfSale(IndividualisedProductItem product);
 
 }
