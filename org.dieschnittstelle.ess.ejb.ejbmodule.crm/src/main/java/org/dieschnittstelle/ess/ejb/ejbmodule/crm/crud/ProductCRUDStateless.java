@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Stateless
-public class ProductCRUDStateless implements ProductCRUDRemote {
+public class ProductCRUDStateless implements ProductCRUDRemote, ProductCRUDLocal {
 
     @PersistenceContext(unitName = "erp_PU")
     private EntityManager entityManager;

@@ -1,18 +1,17 @@
 package org.dieschnittstelle.ess.ejb.ejbmodule.crm;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import org.apache.logging.log4j.Logger;
+import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
+import org.dieschnittstelle.ess.entities.crm.CampaignExecution;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-
-import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
-import org.dieschnittstelle.ess.entities.crm.CampaignExecution;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * tracks the execution of a compaign
@@ -23,7 +22,7 @@ import org.apache.logging.log4j.Logger;
  */
 @Startup
 @javax.ejb.ConcurrencyManagement(javax.ejb.ConcurrencyManagementType.CONTAINER)
-public class CampaignTrackingSingleton implements CampaignTrackingRemote {
+public class CampaignTrackingSingleton implements CampaignTrackingRemote, CampaignTrackingLocal {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(CampaignTrackingSingleton.class);
 	
